@@ -267,12 +267,13 @@ def train(opt):
                 model.train()
 
                 for pred, gt in zip(preds[:5], gts[:5]):
-                    if 'Attn' in opt.Prediction:
-                        pred = pred[:pred.find('[s]')]
-                        gt = gt[:gt.find('[s]')]
-                    elif 'Transformer' in opt.Prediction:
+                    if 'Transformer' in opt.SequenceModeling:
                         pred = pred[:pred.find('</s>')]
                         gt = gt[:gt.find('</s>')]
+                    elif 'Attn' in opt.Prediction:
+                        pred = pred[:pred.find('[s]')]
+                        gt = gt[:gt.find('[s]')]
+                    
                     print(f'{pred:20s}, gt: {gt:20s},   {str(pred == gt)}')
                     log.write(
                         f'{pred:20s}, gt: {gt:20s},   {str(pred == gt)}\n')
