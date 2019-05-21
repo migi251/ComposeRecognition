@@ -408,9 +408,11 @@ if __name__ == '__main__':
     opt.SequenceModeling = 'Transformer'
     opt.Prediction = 'None'
     opt.select_data = 'gene_data'
+    opt.valid_data = 'data_lmdb_release/validation_2'
     opt.batch_ratio = '1'
     opt.batch_size = 64
     opt.imgW = 100
+    opt.valInterval = 10
     # opt.valid_data = 'data_lmdb_release/validation_2'
     # opt.continue_model = './saved_models/None-ResNet-None-Transformer-Seed1111/iter_300.pth'
     # opt.load_weights = './saved_models/None-ResNet-None-Transformer-Seed1111/best_accuracy_14000.pth'

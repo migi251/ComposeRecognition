@@ -1,5 +1,6 @@
 import torch.nn as nn
 from .transformer_component.Block import Encoder, Decoder
+from .transformer_component import Constants
 import torch
 
 
