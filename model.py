@@ -17,7 +17,7 @@ limitations under the License.
 import torch.nn as nn
 
 from modules.transformation import TPS_SpatialTransformerNetwork
-from modules.feature_extraction import VGG_FeatureExtractor, RCNN_FeatureExtractor, ResNet_FeatureExtractor
+from modules.feature_extraction import VGG_FeatureExtractor, RCNN_FeatureExtractor, ResNet_FeatureExtractor,SimpleConv
 from modules.sequence_modeling import BidirectionalLSTM, Transformer
 from modules.prediction import Attention
 import torch
@@ -39,7 +39,14 @@ class Model(nn.Module):
             print('No Transformation module specified')
 
         """ FeatureExtraction """
-        if opt.FeatureExtraction == 'VGG':
+        if opt.FeatureExtraction == 'SimpleConv':
+            assert opt.output_channel == 512
+            assert opt.imgH == 32
+            assert opt.imgW == 100
+            self.FeatureExtraction = SimpleConv(
+                opt.input_channel, opt.output_channel)
+            len_feature = 25
+        elif opt.FeatureExtraction == 'VGG':
             self.FeatureExtraction = VGG_FeatureExtractor(
                 opt.input_channel, opt.output_channel)
             len_feature = (opt.imgH//16-1)*(opt.imgW//4-1)

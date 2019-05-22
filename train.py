@@ -405,7 +405,7 @@ if __name__ == '__main__':
     opt = parser.parse_args()
 
     opt.Transformation = 'None'
-    opt.FeatureExtraction = 'RCNN'
+    opt.FeatureExtraction = 'SimpleConv'
     opt.SequenceModeling = 'Transformer'
     opt.Prediction = 'None'
     opt.select_data = 'gene_data'
